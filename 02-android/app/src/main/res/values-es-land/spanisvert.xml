@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="texto_saludo">El señor de la noche</string>
+    <color name="SP_Color">#008000</color>
+    <color name="TX_color">#80DAEB</color>
+
+
+</resources>

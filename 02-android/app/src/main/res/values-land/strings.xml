@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="texto_saludo">Buenas noches</string>
+    <color name="SP_Color">#FF3700B3</color>
+    <color name="TX_color">#808080</color>
+
+</resources>

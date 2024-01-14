@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="texto_saludo">Spectacular Spiderman </string>
+    <color name="SP_Color">#DDCA1B</color>
+    <color name="TX_color">#2FEC37</color>
+</resources>
