@@ -21,8 +21,8 @@ class BListView : AppCompatActivity() {
 
         val listView = findViewById<ListView>(R.id.lv_list_view)
         val adaptador = ArrayAdapter(
-            this,
-
+            this, // Contexto
+            // como se va a ver (XML)
             android.R.layout.simple_list_item_1,
             arreglo
         )
@@ -36,47 +36,32 @@ class BListView : AppCompatActivity() {
                 anadirEntrenador(adaptador)
             }
         registerForContextMenu(listView)
-    } // finalizzar onCreate
+    }// finalizar onCreate
 
     var posicionItemSeleccionado = 0
-
     override fun onCreateContextMenu(
         menu: ContextMenu?,
         v: View?,
         menuInfo: ContextMenu.ContextMenuInfo?
-    ){
+    ) {
         super.onCreateContextMenu(menu, v, menuInfo)
         // Llenamos las opciones del menu
         val inflater = menuInflater
-        // binflater.inflate(R.menu, menu)
+        inflater.inflate(R.menu.menu, menu)
         // Obtener el id del ArrayListSeleccionado
         val info = menuInfo as AdapterView.AdapterContextMenuInfo
         val posicion = info.position
         posicionItemSeleccionado = posicion
     }
-
-    fun anadirEntrenador(
-        adaptador: ArrayAdapter<BEntrenador>
-    ){
-        arreglo.add(
-            BEntrenador(
-                1,
-                "Adrian",
-                "Descripcion"
-            )
-        )
-    }
-
-    fun mostrarSnackbar(texto:String) {
+    fun mostrarSnackbar(texto:String){
         Snackbar
             .make(
-                findViewById(R.id.lv_list_view),
-                texto,
-                Snackbar.LENGTH_LONG
+                findViewById(R.id.lv_list_view), // view
+                texto, // texto
+                Snackbar.LENGTH_LONG // tiempo
             )
             .show()
     }
-
     override fun onContextItemSelected(item: MenuItem): Boolean {
         return when (item.itemId){
             R.id.mi_editar ->{
@@ -91,12 +76,13 @@ class BListView : AppCompatActivity() {
             else -> super.onContextItemSelected(item)
         }
     }
+
     fun abrirDialogo(){
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Desea Eliminar")
+        builder.setTitle("Desea eliminar")
         builder.setPositiveButton(
             "Aceptar",
-            DialogInterface.OnClickListener{ dialog, which ->
+            DialogInterface.OnClickListener { dialog, which ->
                 mostrarSnackbar("Eliminar aceptado")
             }
         )
@@ -108,21 +94,33 @@ class BListView : AppCompatActivity() {
             R.array.string_array_opciones_dialogo
         )
         val seleccionPrevia = booleanArrayOf(
-            true,
-            false,
-            false
+            true, // Lunes seleccionado
+            false, // Martes NO seleccionado
+            false // Miercoles NO seleccionado
         )
         builder.setMultiChoiceItems(
             opciones,
             seleccionPrevia,
             { dialog,
-                which,
-                isChecked ->
+              which,
+              isChecked ->
                 mostrarSnackbar("Dio clic en el item ${which}")
             }
         )
         val dialogo = builder.create()
         dialogo.show()
+    }
+    fun anadirEntrenador(
+        adaptador: ArrayAdapter<BEntrenador>
+    ){
+        arreglo.add(
+            BEntrenador(
+                1,
+                "Adrian",
+                "Descripcion"
+            )
+        )
+        adaptador.notifyDataSetChanged()
     }
 
 }
