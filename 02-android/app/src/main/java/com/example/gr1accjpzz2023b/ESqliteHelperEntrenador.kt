@@ -25,11 +25,9 @@ class ESqliteHelperEntrenador(
         db?.execSQL(scriptSQLCrearTablaEntrenador)
     }
 
-    override fun onUpgrade(
-        p0: SQLiteDatabase?,
-        p1: Int,
-        p2: Int
-    ) {}
+    override fun onUpgrade(p0: SQLiteDatabase?,
+                           p1: Int,
+                           p2: Int) {}
 
 
 
@@ -51,6 +49,8 @@ class ESqliteHelperEntrenador(
         return if (resultadoGuardar.toInt() == -1) false else true
     }
 
+
+
     fun eliminarEntrenadorFormulario(id:Int):Boolean{
         val conexionEscritura = writableDatabase
         // where ID = ?
@@ -68,7 +68,6 @@ class ESqliteHelperEntrenador(
         conexionEscritura.close()
         return if(resultadoEliminacion == -1) false else true
     }
-
 
 
     fun actualizarEntrenadorFormulario(
@@ -92,7 +91,6 @@ class ESqliteHelperEntrenador(
         conexionEscritura.close()
         return if(resultadoActualizacion == -1) false else true
     }
-
 
     fun consultarEntrenadorPorID(id: Int): BEntrenador{
         val baseDatosLectura = readableDatabase

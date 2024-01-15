@@ -25,6 +25,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.snackbar.Snackbar
 
 
+
 class MainActivity : AppCompatActivity() {
 
     val callbackContenidoIntentExplicito =
@@ -77,12 +78,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_main)
+
         // Base de datos sqlite
         EBaseDeDatos.tablaEntrenador = ESqliteHelperEntrenador(this)
 
         val botonCicloVida = findViewById<Button>(R.id.btn_ciclo_vida)
+
         botonCicloVida
             .setOnClickListener {
                 irActividad(ACicloVida::class.java)
@@ -117,8 +119,14 @@ class MainActivity : AppCompatActivity() {
                 irActividad(ECrudEntrenador::class.java)
             }
 
-    } // Termina onCreate
 
+        val botonRView = findViewById<Button>(R.id.btn_revcycler_view)
+        botonRView
+            .setOnClickListener {
+                irActividad(FRecyclerView::class.java)
+            }
+
+    } // Termina onCreate
     fun abrirActividadConParametros(
         clase: Class<*>
     ){
@@ -131,9 +139,8 @@ class MainActivity : AppCompatActivity() {
     }
     fun irActividad(
         clase: Class<*>
-    ) {
+    ){
         val intent = Intent(this, clase)
         startActivity(intent)
     }
-
 }

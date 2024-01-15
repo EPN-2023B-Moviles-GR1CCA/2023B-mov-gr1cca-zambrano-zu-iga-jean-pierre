@@ -6,7 +6,6 @@ import android.widget.Button
 import com.google.android.material.snackbar.Snackbar
 import android.content.Intent
 
-
 class CIntentExplicitoParametros : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +38,4 @@ class CIntentExplicitoParametros : AppCompatActivity() {
             )
             .show()
     }
-
-    
 }

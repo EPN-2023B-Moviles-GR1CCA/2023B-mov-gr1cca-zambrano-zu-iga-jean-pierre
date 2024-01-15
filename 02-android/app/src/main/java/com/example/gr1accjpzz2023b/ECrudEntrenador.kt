@@ -26,7 +26,7 @@ class ECrudEntrenador : AppCompatActivity() {
                         id.text.toString().toInt()
                     )
                 // Setear los valores en los comp visuales
-                if (entrenador.id == 0) {
+                if(entrenador.id == 0){
                     mostrarSnackbar("Usu. no encontrado")
                 }
                 id.setText(entrenador.id.toString())
@@ -34,6 +34,7 @@ class ECrudEntrenador : AppCompatActivity() {
                 descripcion.setText(entrenador.descripcion)
                 mostrarSnackbar("Usu. encontrado")
             }
+
         val botonCrearBDD = findViewById<Button>(R.id.btn_crear_bdd)
         botonCrearBDD
             .setOnClickListener {
@@ -74,8 +75,7 @@ class ECrudEntrenador : AppCompatActivity() {
             if (respuesta) mostrarSnackbar("Usu. Eliminado")
         }
 
-    }// fin de on create
-
+    }// Fin OnCreate
     fun mostrarSnackbar(texto: String) {
         Snackbar
             .make(
@@ -85,4 +85,5 @@ class ECrudEntrenador : AppCompatActivity() {
             )
             .show()
     }
+
 }
