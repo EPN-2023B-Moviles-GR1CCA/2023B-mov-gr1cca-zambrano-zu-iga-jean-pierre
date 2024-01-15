@@ -73,7 +73,7 @@ class ECrudEntrenador : AppCompatActivity() {
                 )
             if (respuesta) mostrarSnackbar("Usu. Eliminado")
         }
-        
+
     }// fin de on create
 
     fun mostrarSnackbar(texto: String) {
