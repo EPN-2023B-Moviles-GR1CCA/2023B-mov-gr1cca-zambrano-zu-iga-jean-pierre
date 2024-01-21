@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Examen_BI_Jean_Zambrano</string>
+    <string name="texto_saludo">Bienvenido </string>
+    <color name="SP_Color">#00D8C4</color>
+    <color name="TX_color">#1336FD</color>
+
+    <string-array name="string_array_opciones_dialogo">
+        <item>Lunes</item>
+        <item>Martes</item>
+        <item>Miercoles</item>
+    </string-array>
 </resources>
