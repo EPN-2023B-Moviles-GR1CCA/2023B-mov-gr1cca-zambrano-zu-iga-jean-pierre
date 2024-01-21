@@ -15,12 +15,9 @@ class MainActivity : AppCompatActivity() {
 
         val botonListView = findViewById<Button>(R.id.btn_genero)
         botonListView.setOnClickListener {
-            irActividad(VideoListView::class.java)
+            irActividad(GeneroListView::class.java)
         }
     }
-
-
-
 
     fun irActividad(
         clase: Class<*>

@@ -11,6 +11,6 @@ class BDGenero (
     var fechaingreso: Date,
 ) {
     override fun toString(): String {
-        return "BDGenero(id=$id, nombre='$nombre', descripcion='$descripcion', cantidad=$cantidad, restriccionEdad=$restriccionEdad, fechaingreso=$fechaingreso)"
+        return "$nombre, $descripcion"
     }
 }

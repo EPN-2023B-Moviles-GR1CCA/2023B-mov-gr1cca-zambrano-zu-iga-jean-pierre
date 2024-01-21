@@ -14,6 +14,6 @@ class BDVideojuegos (
 
 ) {
     override fun toString(): String {
-        return "BDVideojuegos(id=$id, nombreJ='$nombreJ', disponible=$disponible, plataforma='$plataforma', puntaje=$puntaje, precio=$precio, lanzamiento=$lanzamiento, generoId=$generoId)"
+        return "$nombreJ $disponible"
     }
 }

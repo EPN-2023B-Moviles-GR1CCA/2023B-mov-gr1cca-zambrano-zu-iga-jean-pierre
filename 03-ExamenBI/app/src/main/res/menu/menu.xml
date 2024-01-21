@@ -2,7 +2,13 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Editar" />
-    <item android:title="Eliminar" />
-    <item android:title="Ver Videojuegos" />
+    <item
+        android:id="@+id/mi_editar"
+        android:title="Editar" />
+    <item
+        android:id="@+id/mi_eliminar"
+        android:title="Eliminar" />
+    <item
+        android:id="@+id/mi_ver_videojuego"
+        android:title="Ver Videojuegos" />
 </menu>

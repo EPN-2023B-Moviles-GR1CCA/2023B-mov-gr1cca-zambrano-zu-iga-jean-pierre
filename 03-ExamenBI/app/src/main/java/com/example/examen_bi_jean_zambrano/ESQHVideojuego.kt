@@ -196,7 +196,7 @@ class ESQHVideojuego(
     }
 ///-------------------------------------------
 
-    fun actualizarVideojuegoFormulario(
+    fun actualizarVideojuego(
         nombreJ: String,
         disponible: Int,
         plataforma: String,
@@ -234,7 +234,7 @@ class ESQHVideojuego(
     }
 
     ///----------------------------------------------------------------------------
-    fun actualizarGeneroFormulario(
+    fun actualizarGenero(
         nombre: String,
         descripcion: String,
         cantidad: Int,
@@ -268,7 +268,7 @@ class ESQHVideojuego(
     }
     //--------------------------------------------------------
 
-    fun eliminarVideojuegoFormulario(id: Int): Boolean {
+    fun eliminarGenero(id: Int): Boolean {
         val conexionEscritura = writableDatabase
 
         // WHERE id = ?
@@ -276,7 +276,7 @@ class ESQHVideojuego(
 
         // Eliminar el registro
         val resultadoEliminacion = conexionEscritura.delete(
-            "videojuegos", // Nombre de la tabla
+            "generos", // Nombre de la tabla
             "id=?", // Condición WHERE
             parametrosConsultaDelete // Parámetros para la condición WHERE
         )
@@ -286,17 +286,16 @@ class ESQHVideojuego(
         // Devolver true si la eliminación fue exitosa, false de lo contrario
         return resultadoEliminacion != -1
     }
+    //---------------------------------------------------------------------
 
-    // -------------------
-/*
-    fun eliminarVideojuegoFormulario(id: Int): Boolean {
+    fun eliminarVideojuego(id: Int): Boolean {
         val conexionEscritura = writableDatabase
 
-        // WHERE id = ?
+        // WHERE generoId = ?
         val parametrosConsultaDelete = arrayOf(id.toString())
 
-        // Eliminar el registro
-        val resultadoEliminacion = conexionEscritura.delete(
+        // Eliminar los registros de la tabla videojuegos que hacen referencia al género a eliminar
+        val resultadoEliminacionVideojuegos = conexionEscritura.delete(
             "videojuegos", // Nombre de la tabla
             "id=?", // Condición WHERE
             parametrosConsultaDelete // Parámetros para la condición WHERE
@@ -304,13 +303,12 @@ class ESQHVideojuego(
 
         conexionEscritura.close()
 
-        // Devolver true si la eliminación fue exitosa, false de lo contrario
-        return resultadoEliminacion != -1
+        // Devolver true si al menos un registro fue eliminado, false de lo contrario
+        return resultadoEliminacionVideojuegos != -1
     }
-
 
 //-----------------------------------------------------
-*/
+
     fun obtenerTodosDatosGenero(): ArrayList<BDGenero> {
         val generosList = ArrayList<BDGenero>()
         val baseDatosLectura = readableDatabase
@@ -340,40 +338,6 @@ class ESQHVideojuego(
         return generosList
     }
 ////-----------------------------------------------------------
-
-    fun obtenerTodosDatosVideojuego(): ArrayList<BDVideojuegos> {
-        val videojuegosList = ArrayList<BDVideojuegos>()
-        val baseDatosLectura = readableDatabase
-
-        val scriptConsulta = "SELECT * FROM videojuegos"
-        val resultadoConsulta = baseDatosLectura.rawQuery(scriptConsulta, null)
-
-        if (resultadoConsulta.moveToFirst()) {
-            do {
-                val id = resultadoConsulta.getInt(0)
-                val nombreJ = resultadoConsulta.getString(1)
-                val disponible = resultadoConsulta.getInt(2) == 1
-                val plataforma = resultadoConsulta.getString(3)
-                val puntaje = resultadoConsulta.getInt(4)
-                val precio = resultadoConsulta.getDouble(5)
-                val lanzamientoString = resultadoConsulta.getString(6)
-                val lanzamiento = SimpleDateFormat("yyyy-MM-dd").parse(lanzamientoString)
-                val generoId = resultadoConsulta.getInt(7)
-
-                val videojuego = BDVideojuegos(id, nombreJ, disponible, plataforma, puntaje, precio, lanzamiento, generoId)
-                videojuegosList.add(videojuego)
-
-            } while (resultadoConsulta.moveToNext())
-        }
-
-        resultadoConsulta.close()
-        baseDatosLectura.close()
-
-        return videojuegosList
-    }
-
-
-
 
 
     override fun onUpgrade(p0: SQLiteDatabase?,
