@@ -82,7 +82,7 @@ class ESQHVideojuego(
         disponible: Int,
         plataforma: String,
         puntaje: Int,
-        precio: Double,
+        precio: Int,
         lanzamiento: String,
         generoId: Int
     ): Boolean {
@@ -109,91 +109,6 @@ class ESQHVideojuego(
     }
 
     //------------------------------------------------
-
-    fun consultarVideojuegoPorID(id: Int): BDVideojuegos {
-        val baseDatosLectura = readableDatabase
-        val scriptConsultaLectura = """
-        SELECT * FROM videojuegos WHERE id = ?
-    """.trimIndent()
-
-        val parametrosConsultaLectura = arrayOf(id.toString())
-        val resultadoConsultaLectura = baseDatosLectura.rawQuery(
-            scriptConsultaLectura,
-            parametrosConsultaLectura
-        )
-
-        val existeVideojuego = resultadoConsultaLectura.moveToFirst()
-        val videojuegoEncontrado = BDVideojuegos(0, "", false, "", 0, 0.0, Date(), 0)
-
-        if (existeVideojuego) {
-            do {
-                val id = resultadoConsultaLectura.getInt(0)
-                val nombreJ = resultadoConsultaLectura.getString(1)
-                val disponible = resultadoConsultaLectura.getInt(2) == 1
-                val plataforma = resultadoConsultaLectura.getString(3)
-                val puntaje = resultadoConsultaLectura.getInt(4)
-                val precio = resultadoConsultaLectura.getDouble(5)
-                val lanzamientoString = resultadoConsultaLectura.getString(6)
-                val lanzamiento = SimpleDateFormat("yyyy-MM-dd").parse(lanzamientoString)
-                val generoId = resultadoConsultaLectura.getInt(7)
-
-                videojuegoEncontrado.id = id
-                videojuegoEncontrado.nombreJ = nombreJ
-                videojuegoEncontrado.disponible = disponible
-                videojuegoEncontrado.plataforma = plataforma
-                videojuegoEncontrado.puntaje = puntaje
-                videojuegoEncontrado.precio = precio
-                videojuegoEncontrado.lanzamiento = lanzamiento
-                videojuegoEncontrado.generoId = generoId
-
-            } while (resultadoConsultaLectura.moveToNext())
-        }
-
-        resultadoConsultaLectura.close()
-        baseDatosLectura.close()
-        return videojuegoEncontrado
-    }
-
-    //------------------------------------------------
-    fun consultarGeneroPorID(id: Int): BDGenero {
-        val baseDatosLectura = readableDatabase
-        val scriptConsultaLectura = """
-        SELECT * FROM generos WHERE id = ?
-    """.trimIndent()
-
-        val parametrosConsultaLectura = arrayOf(id.toString())
-        val resultadoConsultaLectura = baseDatosLectura.rawQuery(
-            scriptConsultaLectura,
-            parametrosConsultaLectura
-        )
-
-        val existeGenero = resultadoConsultaLectura.moveToFirst()
-        val generoEncontrado = BDGenero(0, "", "", 0, false, Date())
-
-        if (existeGenero) {
-            do {
-                val id = resultadoConsultaLectura.getInt(0)
-                val nombre = resultadoConsultaLectura.getString(1)
-                val descripcion = resultadoConsultaLectura.getString(2)
-                val cantidad = resultadoConsultaLectura.getInt(3)
-                val restriccionEdad = resultadoConsultaLectura.getInt(4) == 1
-                val fechaIngresoString = resultadoConsultaLectura.getString(5)
-                val fechaIngreso = SimpleDateFormat("yyyy-MM-dd").parse(fechaIngresoString)
-
-                generoEncontrado.id = id
-                generoEncontrado.nombre = nombre
-                generoEncontrado.descripcion = descripcion
-                generoEncontrado.cantidad = cantidad
-                generoEncontrado.restriccionEdad = restriccionEdad
-                generoEncontrado.fechaingreso = fechaIngreso
-
-            } while (resultadoConsultaLectura.moveToNext())
-        }
-
-        resultadoConsultaLectura.close()
-        baseDatosLectura.close()
-        return generoEncontrado
-    }
 ///-------------------------------------------
 
     fun actualizarVideojuego(
@@ -201,7 +116,7 @@ class ESQHVideojuego(
         disponible: Int,
         plataforma: String,
         puntaje: Int,
-        precio: Double,
+        precio: Int,
         lanzamiento: String,
         generoId: Int,
         id: Int
@@ -338,6 +253,45 @@ class ESQHVideojuego(
         return generosList
     }
 ////-----------------------------------------------------------
+
+    fun obtenerVideojuegosPorGenero(generoId: Int): ArrayList<BDVideojuegos> {
+        val videojuegos = ArrayList<BDVideojuegos>()
+        val baseDatosLectura = readableDatabase
+
+        val scriptConsultaLectura = "SELECT * FROM videojuegos WHERE generoId = ?"
+        val parametrosConsultaLectura = arrayOf(generoId.toString())
+
+        val resultadoConsultaLectura = baseDatosLectura.rawQuery(scriptConsultaLectura, parametrosConsultaLectura)
+
+        if (resultadoConsultaLectura.moveToFirst()) {
+            do {
+                val id = resultadoConsultaLectura.getInt(0)
+                val nombreJ = resultadoConsultaLectura.getString(1)
+                val disponible = resultadoConsultaLectura.getInt(2) == 1
+                val plataforma = resultadoConsultaLectura.getString(3)
+                val puntaje = resultadoConsultaLectura.getInt(4)
+                val precio = resultadoConsultaLectura.getDouble(5)
+                val lanzamientoString = resultadoConsultaLectura.getString(6)
+                val generoId = resultadoConsultaLectura.getInt(7)
+
+                // Convertir la fecha de lanzamiento de String a Date
+                val lanzamiento = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(lanzamientoString)
+
+                val videojuego = BDVideojuegos(id, nombreJ, disponible, plataforma, puntaje, precio, lanzamiento, generoId)
+                videojuegos.add(videojuego)
+
+            } while (resultadoConsultaLectura.moveToNext())
+        }
+
+        resultadoConsultaLectura.close()
+        baseDatosLectura.close()
+
+        return videojuegos
+    }
+
+
+    //--------------------------------------------
+
 
 
     override fun onUpgrade(p0: SQLiteDatabase?,

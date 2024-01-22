@@ -76,6 +76,7 @@ class GeneroListView : AppCompatActivity() {
                 startActivity(intent)
                 return true
             }
+
             R.id.mi_eliminar -> {
                 val respuesta = TiendaBaseDatos
                     .TiendaVideojuego!!
@@ -86,8 +87,17 @@ class GeneroListView : AppCompatActivity() {
                 irActividad(GeneroListView::class.java)
                 return true
             }
-            // Otras opciones del menú contextual
+            R.id.mi_ver_videojuego ->{
+                val intent = Intent(this, VideoListView::class.java)
+
+                intent.putExtra("id", generoSeleccionado.id)
+                intent.putExtra("nombre", generoSeleccionado.nombre)
+
+                startActivity(intent)
+                return true
+            }
             else -> super.onContextItemSelected(item)
+
         }
     }
 
