@@ -9,7 +9,7 @@
         android:id="@+id/btn_dar_like"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="56dp"
         android:text="DAR LIKE"
         app:layout_constraintEnd_toEndOf="@+id/tv_descripcion"
         app:layout_constraintStart_toStartOf="@+id/tv_descripcion"
@@ -19,7 +19,7 @@
         android:id="@+id/tv_nombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="92dp"
+        android:layout_marginEnd="68dp"
         android:text="Nombre"
         app:layout_constraintBottom_toBottomOf="@+id/tv_descripcion"
         app:layout_constraintEnd_toStartOf="@+id/tv_descripcion"
@@ -33,16 +33,16 @@
         android:text="Descripcion"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.459"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.209" />
+        app:layout_constraintVertical_bias="0.3" />
 
     <TextView
         android:id="@+id/tv_likes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="124dp"
+        android:layout_marginStart="112dp"
         android:text="Likes"
         app:layout_constraintBottom_toBottomOf="@+id/tv_descripcion"
         app:layout_constraintStart_toEndOf="@+id/tv_descripcion"

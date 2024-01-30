@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_crudevideo"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CrudVideojuego">
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre del juego"
+        app:layout_constraintBottom_toTopOf="@+id/input_nombre_videojuego"
+        app:layout_constraintEnd_toEndOf="@+id/input_nombre_videojuego"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/input_nombre_videojuego" />
+
+    <EditText
+        android:id="@+id/input_nombre_videojuego"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/textView15"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="@+id/textView15"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+    <EditText
+        android:id="@+id/input_disponible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:ems="10"
+        android:hint="Si / No"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/input_nombre_videojuego"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/input_nombre_videojuego"
+        app:layout_constraintTop_toBottomOf="@+id/input_nombre_videojuego" />
+
+    <EditText
+        android:id="@+id/input_plataforma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/input_disponible"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/input_disponible"
+        app:layout_constraintTop_toBottomOf="@+id/input_disponible" />
+
+    <EditText
+        android:id="@+id/input_puntaje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/input_plataforma"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/input_plataforma"
+        app:layout_constraintTop_toBottomOf="@+id/input_plataforma" />
+
+    <EditText
+        android:id="@+id/input_precio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/input_puntaje"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/input_puntaje"
+        app:layout_constraintTop_toBottomOf="@+id/input_puntaje" />
+
+    <EditText
+        android:id="@+id/input_fecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:ems="10"
+        android:hint="yyyy-MM-dd"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/input_precio"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/input_precio"
+        app:layout_constraintTop_toBottomOf="@+id/input_precio" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Por favor ingres el titulo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.446"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.056" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Disponible"
+        app:layout_constraintBottom_toTopOf="@+id/input_disponible"
+        app:layout_constraintEnd_toEndOf="@+id/input_disponible"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/input_disponible" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Plataforma"
+        app:layout_constraintBottom_toTopOf="@+id/input_plataforma"
+        app:layout_constraintEnd_toEndOf="@+id/input_plataforma"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/input_plataforma" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Puntaje"
+        app:layout_constraintBottom_toTopOf="@+id/input_puntaje"
+        app:layout_constraintEnd_toEndOf="@+id/input_puntaje"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/input_puntaje" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Precio"
+        app:layout_constraintBottom_toTopOf="@+id/input_precio"
+        app:layout_constraintEnd_toEndOf="@+id/input_precio"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/input_precio" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Fecha de lanzamiento"
+        app:layout_constraintBottom_toTopOf="@+id/input_fecha"
+        app:layout_constraintEnd_toEndOf="@+id/input_fecha"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/input_fecha" />
+
+    <Button
+        android:id="@+id/btn_agregar2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:text="Agregar videojuego"
+        app:layout_constraintEnd_toEndOf="@+id/input_fecha"
+        app:layout_constraintHorizontal_bias="0.401"
+        app:layout_constraintStart_toStartOf="@+id/input_fecha"
+        app:layout_constraintTop_toBottomOf="@+id/input_fecha" />
+</androidx.constraintlayout.widget.ConstraintLayout>
