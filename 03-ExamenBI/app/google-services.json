@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "442425181899",
+    "project_id": "b2024-examen-bii-jeanz",
+    "storage_bucket": "b2024-examen-bii-jeanz.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:442425181899:android:47109c450c55c3ef1bfd4e",
+        "android_client_info": {
+          "package_name": "com.example.examen_bi_jean_zambrano"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKLzu8u3VKkyYYPUWoDtTM7JjshnCnAEg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
