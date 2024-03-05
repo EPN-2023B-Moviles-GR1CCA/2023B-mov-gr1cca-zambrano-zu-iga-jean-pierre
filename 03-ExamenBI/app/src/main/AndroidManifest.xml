@@ -25,9 +25,6 @@
             android:name=".CrudGenero"
             android:exported="false" />
         <activity
-            android:name=".CrudGenero"
-            android:exported="false" />
-        <activity
             android:name=".GeneroListView"
             android:exported="false" />
         <activity

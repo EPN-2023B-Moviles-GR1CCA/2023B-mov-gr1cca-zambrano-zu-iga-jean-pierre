@@ -13,7 +13,7 @@ class Editar_Videojuego : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editar_videojuego)
 
-        val nombreGenero = intent.getStringExtra("nombreGenero") ?: ""
+        val nombreGenero = intent.getStringExtra("nombregenero") ?: ""
         val id = intent.getIntExtra("id", 0)
         val nombreJ = intent.getStringExtra("nombreJ") ?: ""
         val disponible = intent.getIntExtra("disponible", 0)
@@ -21,8 +21,6 @@ class Editar_Videojuego : AppCompatActivity() {
         val puntaje = intent.getIntExtra("puntaje", 0)
         val precio = intent.getDoubleExtra("precio", 0.0)
         val generoId = intent.getIntExtra("generoId", 0)
-
-
         val lanzamientoDate = intent.getSerializableExtra("lanzamiento") as Date
 
         // Convierte la fecha a un formato de String
@@ -58,12 +56,12 @@ class Editar_Videojuego : AppCompatActivity() {
             val lanzamiento = findViewById<EditText>(R.id.input_fecha2)
 
             // Obtén el ID y otros atributos de la Intent
-            val idVideojuego = intent.getIntExtra("id", 0)
+           //val idVideojuego = intent.getIntExtra("id", 0)
 
             // Convierte el texto de disponible, puntaje y precio a valores correspondientes
-            val disponibleInt = disponible.text.toString().toIntOrNull() ?: 0
-            val puntajeInt = puntaje.text.toString().toIntOrNull() ?: 0
-            val precioInt = precio.text.toString().toIntOrNull() ?: 0
+            val disponibleInt = disponible.text.toString().toInt()
+            val puntajeInt = puntaje.text.toString().toInt()
+            val precioInt = precio.text.toString().toInt()
 
             // Actualiza el Videojuego en la base de datos
             val respuesta = TiendaBaseDatos.TiendaVideojuego!!.actualizarVideojuego(
@@ -74,7 +72,7 @@ class Editar_Videojuego : AppCompatActivity() {
                 precioInt,
                 lanzamiento.text.toString(), // Asegúrate de manejar correctamente la fecha
                 generoId,
-                idVideojuego
+                id
             )
 
             if (respuesta) {

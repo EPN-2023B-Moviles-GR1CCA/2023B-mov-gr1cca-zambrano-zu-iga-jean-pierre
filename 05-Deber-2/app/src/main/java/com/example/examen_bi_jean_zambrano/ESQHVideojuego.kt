@@ -50,13 +50,13 @@ class ESQHVideojuego(
 
     }
 //-----------------------------------------
-    fun crearGenero(
+    fun crearGN(
         nombre: String,
         descripcion: String,
         cantidad: Int,
         restriccionEdad: Int,
         fechaIngreso: String
-    ): Boolean {
+    ):  Pair<Boolean, Long> {
         val basedatosEscritura = writableDatabase
         val valoresAGuardar = ContentValues().apply {
             put("nombre", nombre)
@@ -74,7 +74,9 @@ class ESQHVideojuego(
             )
 
         basedatosEscritura.close()
-        return resultadoGuardar.toInt() != -1
+    val respuesta = resultadoGuardar.toInt() != -1
+    val idDatoInsertado = if (respuesta) resultadoGuardar else -1L // Obtiene el ID del último dato insertado
+    return Pair(respuesta, idDatoInsertado)
     }
     //------------------------------------
     fun crearVideojuego(

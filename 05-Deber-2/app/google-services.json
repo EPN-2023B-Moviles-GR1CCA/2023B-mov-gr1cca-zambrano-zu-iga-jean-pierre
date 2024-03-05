@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "250405513460",
+    "project_id": "examen-bii-jpzz",
+    "storage_bucket": "examen-bii-jpzz.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:250405513460:android:84821565c60aac8e3f16a1",
+        "android_client_info": {
+          "package_name": "com.example.examen_bi_jean_zambrano"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDi9PbSocDQS6Eq7ixQL7PoQx0lGgu9hDg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

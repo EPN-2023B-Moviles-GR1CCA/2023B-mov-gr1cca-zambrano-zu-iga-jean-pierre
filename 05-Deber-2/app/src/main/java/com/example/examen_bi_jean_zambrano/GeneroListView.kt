@@ -11,6 +11,9 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import java.util.Date
 
 class GeneroListView : AppCompatActivity() {
 
@@ -19,7 +22,10 @@ class GeneroListView : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_genero_list_view)
 
-        val botonListView = findViewById<Button>(R.id.btn_agregar)
+        val botonListView = findViewById<Button>(
+            R.id.btn_agregar
+        )
+
         botonListView.setOnClickListener {
             irActividad(CrudGenero::class.java)
         }

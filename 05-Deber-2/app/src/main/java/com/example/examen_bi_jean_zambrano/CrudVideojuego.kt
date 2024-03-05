@@ -13,7 +13,7 @@ class CrudVideojuego : AppCompatActivity() {
         setContentView(R.layout.activity_crud_videojuego)
 
         val generoId = intent.getIntExtra("generoId", 0)
-        val nombreSo = intent.getStringExtra("nombreGenero")
+        val nombreGenero  = intent.getStringExtra("nombreGenero")
 
         val botonCrearVideojuego = findViewById<Button>(R.id.btn_agregar2)
 
@@ -43,7 +43,7 @@ class CrudVideojuego : AppCompatActivity() {
             if (respuesta) {
                 val intent = Intent(this, VideoListView::class.java)
                 intent.putExtra("id", generoId)
-                intent.putExtra("nombre", nombreSo)
+                intent.putExtra("nombre", nombreGenero)
                 startActivity(intent)
 
             }

@@ -34,8 +34,8 @@ class VideoListView : AppCompatActivity() {
         val botonListView = findViewById<Button>(R.id.btn_agregar2)
         botonListView.setOnClickListener {
             val intent = Intent(this, CrudVideojuego::class.java)
-            intent.putExtra("generoId", generoId)
-            intent.putExtra("nombreGenero", nombreGenero)
+            intent.putExtra("id", generoId)
+            intent.putExtra("nombre", nombreGenero)
             startActivity(intent)
         }
 

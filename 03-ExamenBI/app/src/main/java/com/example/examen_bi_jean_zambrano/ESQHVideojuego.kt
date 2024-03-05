@@ -49,7 +49,7 @@ class ESQHVideojuego(
         db?.execSQL(scriptSQLCrearTablaVideo)
 
     }
-//-----------------------------------------
+    //-----------------------------------------
     fun crearGenero(
         nombre: String,
         descripcion: String,

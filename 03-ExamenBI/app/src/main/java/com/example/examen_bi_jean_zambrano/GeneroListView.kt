@@ -14,7 +14,7 @@ import com.google.android.material.snackbar.Snackbar
 
 class GeneroListView : AppCompatActivity() {
 
-   val arreglo = TiendaBaseDatos.TiendaVideojuego!!.obtenerTodosDatosGenero()
+    val arreglo = TiendaBaseDatos.TiendaVideojuego!!.obtenerTodosDatosGenero()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_genero_list_view)
