@@ -90,6 +90,7 @@ class GeneroListView : AppCompatActivity() {
                         generoSeleccionado.id
                     )
                 if (respuesta) mostrarSnackbar("Género Eliminado")
+                eliminarGN(generoSeleccionado.id.toString())
                 irActividad(GeneroListView::class.java)
                 return true
             }
@@ -116,4 +117,26 @@ class GeneroListView : AppCompatActivity() {
             )
             .show()
     }
+
+    fun eliminarGN(id:String){
+        val db = Firebase.firestore
+        val referenciaGN = db.collection("generos");
+            referenciaGN.document(id).collection("videojuegos").get()
+            .addOnSuccessListener {
+                // it => eso (lo que llegue)
+                for (videojuegos in it) {
+                    referenciaGN.document(id).collection("videojuegos").document(videojuegos.id)
+                        .delete() // elimina
+                        .addOnCompleteListener { /* Si todo salio bien */ }
+                        .addOnFailureListener { /* Si algo salio mal*/ }
+                }
+            }
+
+        referenciaGN
+            .document(id)
+            .delete() // elimina
+            .addOnCompleteListener { /* Si todo salio bien*/ }
+            .addOnFailureListener { /* Si algo salio mal*/ }
+    }
+
 }

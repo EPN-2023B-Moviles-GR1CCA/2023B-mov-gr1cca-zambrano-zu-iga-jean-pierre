@@ -74,8 +74,10 @@ class ESQHVideojuego(
             )
 
         basedatosEscritura.close()
+
     val respuesta = resultadoGuardar.toInt() != -1
     val idDatoInsertado = if (respuesta) resultadoGuardar else -1L // Obtiene el ID del último dato insertado
+
     return Pair(respuesta, idDatoInsertado)
     }
     //------------------------------------
@@ -87,7 +89,7 @@ class ESQHVideojuego(
         precio: Int,
         lanzamiento: String,
         generoId: Int
-    ): Boolean {
+    ): Pair<Boolean, Long> {
         val basedatosEscritura = writableDatabase
         val valoresAGuardar = ContentValues().apply {
             put("nombreJ", nombreJ)
@@ -107,7 +109,10 @@ class ESQHVideojuego(
             )
 
         basedatosEscritura.close()
-        return resultadoGuardar.toInt() != -1
+
+        val exito = resultadoGuardar.toInt() != -1
+        val idDatoInsertado = if (exito) resultadoGuardar else -1L // Obtiene el ID del último dato insertado
+        return Pair(exito, idDatoInsertado)
     }
 
     //------------------------------------------------
@@ -197,9 +202,7 @@ class ESQHVideojuego(
             "id=?", // Condición WHERE
             parametrosConsultaDelete // Parámetros para la condición WHERE
         )
-
         conexionEscritura.close()
-
         // Devolver true si la eliminación fue exitosa, false de lo contrario
         return resultadoEliminacion != -1
     }
@@ -217,15 +220,12 @@ class ESQHVideojuego(
             "id=?", // Condición WHERE
             parametrosConsultaDelete // Parámetros para la condición WHERE
         )
-
         conexionEscritura.close()
-
         // Devolver true si al menos un registro fue eliminado, false de lo contrario
         return resultadoEliminacionVideojuegos != -1
     }
 
-//-----------------------------------------------------
-
+    //------------------------------------------------///
     fun obtenerTodosDatosGenero(): ArrayList<BDGenero> {
         val generosList = ArrayList<BDGenero>()
         val baseDatosLectura = readableDatabase

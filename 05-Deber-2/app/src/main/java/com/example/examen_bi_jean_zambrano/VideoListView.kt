@@ -13,6 +13,8 @@ import android.widget.TextView
 import android.widget.EditText
 import android.widget.ListView
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 
 class VideoListView : AppCompatActivity() {
@@ -91,7 +93,7 @@ class VideoListView : AppCompatActivity() {
             }
             R.id.mi_borrar_video -> {
                 val respuesta = TiendaBaseDatos.TiendaVideojuego!!.eliminarVideojuego(videojuegoSeleccionado.id)
-
+                eliminarVideojuego(videojuegoSeleccionado.id.toString(),videojuegoSeleccionado.generoId.toString())
                 val intent = Intent(this, VideoListView::class.java)
                 intent.putExtra("id", videojuegoSeleccionado.generoId)
                 intent.putExtra("nombre", nombreGenero)
@@ -117,5 +119,16 @@ class VideoListView : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun eliminarVideojuego(id:String,generoId:String){
+        val db = Firebase.firestore
+        val referenciaVideojuego = db
+            .collection("generos").document(generoId).collection("videojuegos")
+
+        referenciaVideojuego
+            .document(id)
+            .delete() // elimina
+            .addOnCompleteListener { /* Si todo salio bien*/ }
+            .addOnFailureListener { /* Si algo salio mal*/ }
+    }
 
 } /// me ecuchas ?

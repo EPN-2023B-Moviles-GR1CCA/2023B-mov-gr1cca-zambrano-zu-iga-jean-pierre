@@ -72,29 +72,30 @@ class CrudGenero : AppCompatActivity() {
             val intent = Intent(this, clase)
             startActivity(intent)
         }
-    fun crearGN(
-        id: String,
-        nombre: String,
-        descripcion: String,
-        cantidad: Int,
-        restriccionEdadBoolean: Int,
-        fechaIngreso: String
-    ){
-        val db = Firebase.firestore
-        val refenciasGenero = db
-            .collection("generos")
 
-        val datosGenero = hashMapOf(
-            "nombre" to nombre,
-            "descripcion" to descripcion,
-            "cantidad" to cantidad,
-            "restriccionEdadBoolean" to restriccionEdadBoolean,
-            "fechaIngreso" to fechaIngreso
-        )
-        refenciasGenero
-            .document(id)
-            .set(datosGenero)
-            .addOnSuccessListener {  }
-            .addOnFailureListener {  }
-    }
-    }
+        fun crearGN(
+            id: String,
+            nombre: String,
+            descripcion: String,
+            cantidad: Int,
+            restriccionEdadBoolean: Int,
+            fechaIngreso: String
+        ){
+            val db = Firebase.firestore
+            val refenciasGenero = db
+                .collection("generos")
+
+            val datosGenero = hashMapOf(
+                "nombre" to nombre,
+                "descripcion" to descripcion,
+                "cantidad" to cantidad,
+                "restriccionEdadBoolean" to restriccionEdadBoolean,
+                "fechaIngreso" to fechaIngreso
+            )
+            refenciasGenero
+                .document(id)
+                .set(datosGenero)
+                .addOnSuccessListener {  }
+                .addOnFailureListener {  }
+        }
+}
