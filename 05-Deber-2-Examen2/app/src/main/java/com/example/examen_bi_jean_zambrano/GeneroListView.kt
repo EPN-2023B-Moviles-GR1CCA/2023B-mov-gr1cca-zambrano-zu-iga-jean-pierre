@@ -121,7 +121,7 @@ class GeneroListView : AppCompatActivity() {
     fun eliminarGN(id:String){
         val db = Firebase.firestore
         val referenciaGN = db.collection("generos");
-            referenciaGN.document(id).collection("videojuegos").get()
+        referenciaGN.document(id).collection("videojuegos").get()
             .addOnSuccessListener {
                 // it => eso (lo que llegue)
                 for (videojuegos in it) {

@@ -81,6 +81,7 @@ class CrudGenero : AppCompatActivity() {
             restriccionEdadBoolean: Int,
             fechaIngreso: String
         ){
+
             val db = Firebase.firestore
             val refenciasGenero = db
                 .collection("generos")

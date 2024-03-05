@@ -45,7 +45,6 @@ class CrudVideojuego : AppCompatActivity() {
             if (respuesta) {
 
                 crearVideojuego(
-
                     idVideojuego.toString(),
                     generoId.toString(),
                     nombreJ.text.toString(),

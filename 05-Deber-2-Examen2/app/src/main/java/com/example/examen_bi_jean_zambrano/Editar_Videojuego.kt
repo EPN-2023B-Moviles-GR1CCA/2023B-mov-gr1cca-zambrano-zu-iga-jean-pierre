@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -76,6 +78,16 @@ class Editar_Videojuego : AppCompatActivity() {
             )
 
             if (respuesta) {
+                editarVideojuegos(
+                    id.toString(),
+                    generoId.toString(),
+                    nombre.text.toString(),
+                    plataforma.text.toString(),
+                    puntajeInt,
+                    precioInt,
+                    lanzamiento.text.toString()
+                )
+
                 val intent = Intent(this, VideoListView::class.java)
                 intent.putExtra("id", generoId)
                 intent.putExtra("nombre", nombreGenero)
@@ -87,6 +99,34 @@ class Editar_Videojuego : AppCompatActivity() {
     fun irActividad(clase: Class<*>) {
         val intent = Intent(this, clase)
         startActivity(intent)
+    }
+    fun editarVideojuegos(
+        id: String,
+        idGenero: String,
+        nombre: String,
+        plataforma: String,
+        puntajeInt: Int,
+        precioInt: Int,
+        lanzamiento: String
+    ){
+        val db = Firebase.firestore
+        val referenciaVideojuego = db.collection("generos").document(idGenero)
+            .collection("videojuegos")
+
+        val datosVideojuegos = hashMapOf(
+            "nombre" to nombre,
+            "plataforma" to plataforma,
+            "puntajeInt" to puntajeInt,
+            "precioInt" to precioInt,
+            "lanzamiento" to lanzamiento
+        )
+
+        // aqui se indentifica los  valores quemado de crear y actualiza
+        referenciaVideojuego
+            .document(id)
+            .set(datosVideojuegos)
+            .addOnSuccessListener {  }
+            .addOnFailureListener {  }
     }
 
 }

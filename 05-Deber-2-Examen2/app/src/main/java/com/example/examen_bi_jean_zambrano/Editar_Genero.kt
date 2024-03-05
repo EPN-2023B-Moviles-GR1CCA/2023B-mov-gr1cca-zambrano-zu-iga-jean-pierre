@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -74,10 +76,17 @@ class Editar_Genero : AppCompatActivity() {
             )
 
             if (respuesta) mostrarSnackbar("Género Actualizado")
+            editarGenero(
+                idGenero.toString(),
+                nombre.text.toString(),
+                descripcion.text.toString(),
+                cantidad.text.toString().toInt(),
+                restriccionEdadInt,
+                fechaIngreso.text.toString()
+            )
             irActividad(GeneroListView::class.java)
         }
     }
-
 
     fun mostrarSnackbar(texto: String) {
         Snackbar
@@ -93,6 +102,30 @@ class Editar_Genero : AppCompatActivity() {
     ){
         val intent = Intent(this, clase)
         startActivity(intent)
+    }
+
+    fun editarGenero(
+        id: String,
+        nombre: String,
+        descripcion: String,
+        cantidad: Int,
+        restriccionEdadInt:Int,
+        fechaIngreso: String
+    ){
+        val db = Firebase.firestore
+        val referenciaGenero = db.collection("generos")
+        val datosGenero = hashMapOf(
+            "nombre" to nombre,
+            "descripcion" to descripcion,
+            "cantidad" to cantidad,
+            "restriccionEdadInt" to restriccionEdadInt,
+            "fechaIngreso" to fechaIngreso
+        )
+
+        // identificador quemado
+        referenciaGenero.document(id).set(datosGenero)
+            .addOnSuccessListener {  }
+            .addOnFailureListener {  }
     }
 
 
